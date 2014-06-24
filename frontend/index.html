@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ducklings</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="compiled/style.css">
+  </head>
+  <body>
+    <div id="big-container" class=".container-fluid">
+      <div id="header" class="row-fluid">
+      </div>
+
+      <div id="main-parent" class="row-fluid">
+        <div id="left-bar" class="col-xs-12 col-md-4">
+          <ul id="playlist-list">
+            <li class="playlist-item">
+              <span class="playlist-name">kpop</span>
+              <span class="song-count">18 songs</span>
+              <span class="listener-count badge pull-right">8</span>
+            </li>
+            <li class="playlist-item selected-playlist">
+              <span class="playlist-name">Selected playlist</span>
+              <span class="song-count">2 songs</span>
+              <span class="listener-count badge pull-right">102</span>
+            </li>
+            <li class="playlist-item">
+              <span class="playlist-name">Playlist with no listeners</span>
+              <span class="song-count">0 songs</span>
+              <span class="listener-count badge pull-right"></span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-md-8">
+        </div>
+      </div>
+    </div>
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/models/todo.js"></script>
+  </body>
+</html>

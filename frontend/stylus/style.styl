@@ -1,0 +1,68 @@
+$gray-darker  = lighten(#000, 13.5%)
+$gray-dark    = lighten(#000, 20%)
+$gray         = lighten(#000, 33.5%)
+$gray-light   = lighten(#000, 60%)
+$gray-lighter = lighten(#000, 93.5%)
+
+$header-height = 50px
+
+html, body, #big-container, #left-bar
+  height 100%
+
+// Hack to get full height with magic ember things
+body > .ember-view
+  height 100%
+
+#header
+  height 50px
+  background-color $gray-darker
+
+#main-parent
+  height unquote("calc(100% - " + $header-height + ")")
+  overflow-y scroll
+
+#left-bar
+  padding-left 0
+  padding-right 0
+  background-color $gray-dark
+  overflow-y scroll
+
+#playlist-list
+  color $gray-lighter
+  padding 10px 0px 10px 0px
+  margin 0
+
+.playlist-item
+  width 100%
+  display block
+  padding 5px 10px 5px 10px
+  vertical-align middle
+  border-top 1px solid transparent
+  border-bottom 1px solid transparent
+  outline 0
+  .playlist-name
+    color lighten($gray-light, 50%)
+  .song-count
+    font-size 11px
+    font-weight 300
+    color $gray-light
+    padding-left 3px
+  .listener-count
+    .glyphicon
+      color $gray-lighter
+      font-size 11px
+    color $gray-light
+  .listener-count.empty
+    .glyphicon
+      color $gray
+    color transparent
+
+.playlist-item:hover
+  text-decoration none
+  .playlist-name
+    color $gray-lighter
+
+.playlist-item.active
+  border-top 1px solid darken($gray-darker, 20%)
+  border-bottom 1px solid lighten($gray-darker, 15%)
+  background-color $gray-darker
