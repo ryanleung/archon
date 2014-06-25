@@ -5,6 +5,7 @@
     <title>Archon</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="compiled/style.css">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
   </head>
   <body>
     <script type="text/x-handlebars">
@@ -21,12 +22,20 @@
       {{outlet}}
     </script>
     <script type="text/x-handlebars" id="playlists">
-      {{#each}}
-        {{#link-to 'playlist' this}}
-          {{title}}
-        {{/link-to}}
-      {{/each}}
-      {{outlet}}
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <ul>
+            {{#each}}
+              <li>
+                {{#link-to 'playlist' this}}
+                  {{title}}
+                {{/link-to}}
+              </li>
+            {{/each}}
+          </ul>
+         {{outlet}}
+        </div>
+      </div> 
     </script>
 
     <script type="text/x-handlebars" id="playlist">
