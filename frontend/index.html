@@ -12,39 +12,31 @@
         <div class="navbar-inner">
           <a class="brand" href="#">Archon</a>
           <ul class="nav">
-            <li><a href="#">Playlists</a></li>
-            <li><a>About</a></li>
+            <li>{{#link-to 'about'}}About{{/link-to}}</li>
+            <li>{{#link-to 'playlists'}}playlists{{/link-to}}</li>
           </ul>
         </div>
       </div>
+
+      {{outlet}}
+    </script>
+    <script type="text/x-handlebars" id="playlists">
+      {{#each}}
+        {{#link-to 'playlist' this}}
+          {{title}}
+        {{/link-to}}
+      {{/each}}
+      {{outlet}}
     </script>
 
-    <div id="big-container" class=".container-fluid">
-      <div id="header" class="row-fluid">
-      </div>
+    <script type="text/x-handlebars" id="playlist">
+      {{title}}{{author}}{{date}}
+    </script>
 
-
-      <div id="main-parent" class="row-fluid">
-        <div id="left-bar" class="col-xs-12 col-md-4">
-          <ul id="playlist-list">
-            <li class="playlist-item">
-              <span class="playlist-name">kpop</span>
-              <span class="song-count">18 songs</span>
-              <span class="listener-count badge pull-right">8</span>
-            </li>
-            </li>
-          </ul>
-        </div>
-        <div class="col-xs-12 col-md-8">
-        </div>
-      </div>
-    </div>
     <script src="js/libs/jquery-1.10.2.min.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>
     <script src="js/libs/ember.js"></script>
     <script src="js/libs/ember-data.js"></script>
-    <script src="js/application.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/models/todo.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
