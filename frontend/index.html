@@ -9,37 +9,39 @@
   </head>
   <body>
     <script type="text/x-handlebars">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <a class="brand" href="#">Archon</a>
-          <ul class="nav">
-            <li>{{#link-to 'about'}}About{{/link-to}}</li>
-            <li>{{#link-to 'playlists'}}playlists{{/link-to}}</li>
-          </ul>
+      <div id="big-container" class="container-fluid">
+        <div id="header" class="row-fluid">
+        </div>
+
+        <div id="main-parent" class="row-fluid">
+          <div id="left-bar" class="col-xs-12 col-md-4">
+            {{partial "sidebar"}}
+          </div>
         </div>
       </div>
-
-      {{outlet}}
     </script>
-    <script type="text/x-handlebars" id="playlists">
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <ul>
-            {{#each}}
-              <li>
-                {{#link-to 'playlist' this}}
-                  {{title}}
-                {{/link-to}}
-              </li>
-            {{/each}}
-          </ul>
-         {{outlet}}
+
+    <script type="text/x-handlebars" id="_sidebar">
+      <div id="playlist-list">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <ul>
+              {{#each}}
+                <li>
+                  {{#link-to 'playlist' this}}
+                    {{title}}
+                  {{/link-to}}
+                </li>
+              {{/each}}
+            </ul>
+           {{outlet}}
+          </div>
         </div>
-      </div> 
+      </div>
     </script>
 
     <script type="text/x-handlebars" id="playlist">
-      {{title}}{{author}}{{date}}
+      {{title}} 
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
