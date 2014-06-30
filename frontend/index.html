@@ -41,8 +41,9 @@
     </script>
 
     <script type="text/x-handlebars" id="playlist">
-      {{videos}}
-      {{title}} 
+      {{#each model.videos}}
+        {{title}}
+      {{/each}}
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
