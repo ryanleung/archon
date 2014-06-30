@@ -20,7 +20,10 @@ App.PlaylistRoute = Ember.Route.extend({
 App.Playlist = DS.Model.extend({
   title: DS.attr('string'),
   watcher_count: DS.attr('number'),
-  videos: DS.hasMany('video')
+  videos: DS.hasMany('video', {async: true}),
+  video_names: function() {
+    return this.get('videos');
+  }.property('videos')
 });
 
 App.Video = DS.Model.extend({
@@ -33,7 +36,7 @@ App.Playlist.FIXTURES = [
     id: 1,
     title: "kpop",
     watcher_count: 18,
-    videos: [1, 2]
+    videos: [1, 2, 3]
   },
   {
     id: 2,
@@ -50,5 +53,9 @@ App.Video.FIXTURES = [
   {
     id: 2,
     title: "game of thrones",
+  },
+  {
+    id: 3,
+    title: "wut",
   }
 ];
