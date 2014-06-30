@@ -30,7 +30,6 @@
                 <li>
                   {{#link-to 'playlist' this}}
                     {{title}}
-                    {{videos}}
                   {{/link-to}}
                 </li>
               {{/each}}
@@ -42,6 +41,7 @@
     </script>
 
     <script type="text/x-handlebars" id="playlist">
+      {{videos}}
       {{title}} 
     </script>
 

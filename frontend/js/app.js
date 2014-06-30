@@ -11,19 +11,10 @@ App.ApplicationRoute = Ember.Route.extend({
   }
 });
 
-App.PlaylistRoute = Ember.Route.extend({
-  model: function(params) {
-    return playlists.findBy('id', params.playlist_id);
-  }
-});
-
 App.Playlist = DS.Model.extend({
   title: DS.attr('string'),
   watcher_count: DS.attr('number'),
   videos: DS.hasMany('video', {async: true}),
-  video_names: function() {
-    return this.get('videos');
-  }.property('videos')
 });
 
 App.Video = DS.Model.extend({
