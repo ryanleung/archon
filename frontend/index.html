@@ -11,18 +11,22 @@
     <script type="text/x-handlebars">
       <div id="big-container" class="container-fluid">
         <div id="header" class="row-fluid">
+          <li>{{#link-to 'home'}}Archon{{/link-to}}</li>
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
         </div>
 
         <div id="main-parent" class="row-fluid">
+
           <div id="left-bar" class="col-xs-12 col-md-4">
             {{partial "sidebar"}}
           </div>
+          {{outlet}}
         </div>
       </div>
     </script>
 
     <script type="text/x-handlebars" id="_sidebar">
-      <div id="playlist-list">
+      <div id="playlists-list">
         <div class="container-fluid">
           <div class="row-fluid">
             <ul>
@@ -34,8 +38,8 @@
                 </li>
               {{/each}}
             </ul>
-           {{outlet}}
           </div>
+              <button {{action "addPlaylist"}}>Add Playlist!</button>
         </div>
       </div>
     </script>
@@ -44,6 +48,7 @@
       {{#each model.videos}}
         {{title}}
       {{/each}}
+      <button {{action "addVideo"}}>Add more videos!</button>
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>

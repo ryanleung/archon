@@ -2,12 +2,23 @@ App = Ember.Application.create();
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 App.Router.map(function() {
+  this.resource('about');
+  this.resource('home');
   this.resource('playlist', { path: 'playlist/:playlist_id'});
 });
 
 App.ApplicationRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('playlist');
+  },
+
+  actions: {
+    addPlaylist: function() {
+      this.get('store').push('playlist', {id: 3, title: "bob saget", watcher_count: 9, videos: [1]})
+    },
+    addVideo: function() {
+      alert("hi");
+    }
   }
 });
 
@@ -27,12 +38,13 @@ App.Playlist.FIXTURES = [
     id: 1,
     title: "kpop",
     watcher_count: 18,
-    videos: [1, 2, 3]
+    videos: [1, 2]
   },
   {
     id: 2,
     title: "The Parley Letter",
     watcher_count: 20,
+    videos: [3]
   }
 ];
 
