@@ -13,8 +13,8 @@ App.ApplicationRoute = Ember.Route.extend({
   },
 
   actions: {
-    addPlaylist: function() {
-      this.get('store').push('playlist', {id: 3, title: "bob saget", watcher_count: 9, videos: [1]})
+    addPlaylist: function(playlist_name) {
+      this.get('store').push('playlist', {id: 3, title: playlist_name})
     },
     addVideo: function() {
       alert("hi");

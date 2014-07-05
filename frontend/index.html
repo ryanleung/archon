@@ -39,7 +39,10 @@
               {{/each}}
             </ul>
           </div>
-              <button {{action "addPlaylist"}}>Add Playlist!</button>
+              <form>
+              Playlist: {{input type="text" value=title}}
+              <button {{action "addPlaylist" title}}>Add Playlist!</button>
+              </form>
         </div>
       </div>
     </script>
