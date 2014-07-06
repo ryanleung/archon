@@ -16,10 +16,10 @@
         </div>
 
         <div id="main-parent" class="row-fluid">
-
           <div id="left-bar" class="col-xs-12 col-md-4">
             {{partial "sidebar"}}
           </div>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/rqtr_RvR3sY" frameborder="0" allowfullscreen></iframe>
           {{outlet}}
         </div>
       </div>
@@ -48,10 +48,17 @@
     </script>
 
     <script type="text/x-handlebars" id="playlist">
-      {{#each model.videos}}
-        {{title}}
-      {{/each}}
-      <button {{action "addVideo"}}>Add more videos!</button>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <ul>
+            {{#each model.videos}}
+            <li>
+            {{title}}
+            </li>
+          {{/each}}
+        </ul>
+        <button {{action "addVideo"}}>Add more videos!</button>
+      </div>
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>

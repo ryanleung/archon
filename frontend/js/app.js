@@ -1,6 +1,6 @@
 App = Ember.Application.create();
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
-
+id_count = 3;
 App.Router.map(function() {
   this.resource('about');
   this.resource('home');
@@ -14,13 +14,23 @@ App.ApplicationRoute = Ember.Route.extend({
 
   actions: {
     addPlaylist: function(playlist_name) {
-      this.get('store').push('playlist', {id: 3, title: playlist_name})
+      this.get('store').push('playlist', {id: id_count, title: playlist_name})
+      id_count += 1;
     },
     addVideo: function() {
       alert("hi");
     }
   }
 });
+
+
+AViewWithLayout = Ember.View.extend({
+  name: 'Teddy',
+  layoutName: 'my_layout',
+  templateName: 'my_content'
+});
+
+
 
 App.Playlist = DS.Model.extend({
   title: DS.attr('string'),
