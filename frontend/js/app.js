@@ -67,16 +67,16 @@ App.Video.FIXTURES = [
   {
     id: 1,
     title: "nightblue3 game",
-    url: "http://www.youtube.com/watch?v=N-VkkHjcBec&list=UUN078UFNwPgwWlU_V5WCTNw&feature=share"
+    url: "//www.youtube.com/embed/rqtr_RvR3sY"
   },
   {
     id: 2,
     title: "poker phil helmuth",
-    url: "https://www.youtube.com/watch?v=P71kB-pA7WE"
+    url: "//www.youtube.com/embed/TJvtPnKLQ34"
   },
   {
     id: 3,
     title: "gangnam style",
-    url: "https://www.youtube.com/watch?v=HmBByDQHJAA"
+    url: "//www.youtube.com/embed/rqtr_RvR3sY"
   }
 ];
