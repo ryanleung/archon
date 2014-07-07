@@ -19,7 +19,6 @@
           <div id="left-bar" class="col-xs-12 col-md-4">
             {{partial "sidebar"}}
           </div>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/rqtr_RvR3sY" frameborder="0" allowfullscreen></iframe>
           {{outlet}}
         </div>
       </div>
@@ -47,18 +46,27 @@
       </div>
     </script>
 
+    <!-- embedding video
+          <iframe width="420" height="315" src="//www.youtube.com/embed/rqtr_RvR3sY" frameborder="0" allowfullscreen></iframe> -->
     <script type="text/x-handlebars" id="playlist">
       <div class="container-fluid">
         <div class="row-fluid">
+          {{outlet}}
           <ul>
             {{#each model.videos}}
             <li>
-            {{title}}
+              {{#link-to 'video' this}}
+              {{title}}
+              {{/link-to}}
             </li>
           {{/each}}
         </ul>
         <button {{action "addVideo"}}>Add more videos!</button>
       </div>
+    </script>
+
+    <script type="text/x-handlebars" id="video">
+    <iframe width="420" height="315" src="//www.youtube.com/embed/rqtr_RvR3sY" frameborder="0" allowfullscreen></iframe>
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
