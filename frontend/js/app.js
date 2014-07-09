@@ -30,7 +30,6 @@ App.ApplicationRoute = Ember.Route.extend({
                         q: search_query
                       },
                       function(data) {
-                        mjun = data;
                         console.log(data);
                         console.log(data.responseJSON.items);
                       }
