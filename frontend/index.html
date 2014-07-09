@@ -61,7 +61,8 @@
             </li>
           {{/each}}
         </ul>
-        <button {{action "addVideo"}}>Add more videos!</button>
+        Search: {{input type="text" value=query}}
+        <button {{action "youtubeSearch" query}}>Add more videos!</button>
       </div>
     </script>
 
