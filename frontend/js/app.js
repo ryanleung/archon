@@ -21,20 +21,11 @@ App.ApplicationRoute = Ember.Route.extend({
       this.get('store').push('playlist', {id: id_count, title: playlist_name})
       id_count += 1;
     },
-    addVideo: function(video_link) {
-      this.get('store').push('video')
+    addVideo: function() {
+      console.log($.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAhe1BqglbuLH3s2ZUBacjEoxTQ7ZKD0-k&part=snippet&q=michael"))
     }
   }
 });
-
-
-AViewWithLayout = Ember.View.extend({
-  name: 'Teddy',
-  layoutName: 'my_layout',
-  templateName: 'my_content'
-});
-
-
 
 App.Playlist = DS.Model.extend({
   title: DS.attr('string'),
