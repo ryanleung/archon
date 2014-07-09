@@ -27,9 +27,12 @@ App.ApplicationRoute = Ember.Route.extend({
                       { key: api_key,
                         part: "snippet",
                         q: search_query
+                      },
+                      function(data) {
+                        console.log(data);
+                        console.log(data.responseJSON.items);
                       }
-                    )
-      console.log(result.responseJSON.items)
+                    ); 
 
     }
   }
