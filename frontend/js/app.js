@@ -17,6 +17,7 @@ App.ApplicationRoute = Ember.Route.extend({
   },
 
   actions: {
+    var searchResult = [];
     addPlaylist: function(playlist_name) {
       this.get('store').push('playlist', {id: id_count, title: playlist_name})
       id_count += 1;
@@ -30,8 +31,7 @@ App.ApplicationRoute = Ember.Route.extend({
                         q: search_query
                       },
                       function(data) {
-                        console.log(data);
-                        console.log(data.responseJSON.items);
+                        searchResult = data.items
                       }
                     ); 
 
