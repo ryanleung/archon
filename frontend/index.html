@@ -63,9 +63,15 @@
         </ul>
         Search: {{input type="text" value=query}}
         <button {{action "youtubeSearch" query}}>Add more videos!</button>
-        {{#each searchResult}}
-          hi
-        {{/each}}
+        <div class="row fluid">
+          <ul>
+            {{#each searchResult}}
+            <li>
+              hi
+            </li>
+           {{/each}}
+          </ul>
+        </div>
       </div>
     </script>
 

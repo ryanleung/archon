@@ -12,12 +12,13 @@ App.Router.map(function() {
 });
 
 App.ApplicationRoute = Ember.Route.extend({
+  searchResult: [],
+
   model: function() {
     return this.store.find('playlist');
   },
 
   actions: {
-    var searchResult = [];
     addPlaylist: function(playlist_name) {
       this.get('store').push('playlist', {id: id_count, title: playlist_name})
       id_count += 1;
