@@ -32,8 +32,8 @@ App.ApplicationRoute = Ember.Route.extend({
                       },
                       function(data) {
                         searchResults = data.items;
-                        for (result in searchResults) {
-                          $('#myResults').append(result.snippet.title);
+                        for (i = 0; i < searchResults.length; i++) {
+                          $('#myResults').append(searchResults[i].snippet.title);
                         }
                       }
                     ); 
