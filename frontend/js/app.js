@@ -12,7 +12,7 @@ App.Router.map(function() {
 });
 
 App.ApplicationRoute = Ember.Route.extend({
-  searchResults: [],
+  searchResults: [1,2,3],
 
   model: function() {
     return this.store.find('playlist');
@@ -31,7 +31,8 @@ App.ApplicationRoute = Ember.Route.extend({
                         q: search_query
                       },
                       function(data) {
-                        searchResults = data.items
+                        searchResults = data.items;
+                        $('#myResults').html(searchResults[0].snippet.title);
                       }
                     ); 
 
