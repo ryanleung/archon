@@ -12,7 +12,7 @@ App.Router.map(function() {
 });
 
 App.ApplicationRoute = Ember.Route.extend({
-  searchResult: [],
+  searchResults: [],
 
   model: function() {
     return this.store.find('playlist');
@@ -25,14 +25,13 @@ App.ApplicationRoute = Ember.Route.extend({
     },
     youtubeSearch: function(search_query) {
       api_key = "AIzaSyAhe1BqglbuLH3s2ZUBacjEoxTQ7ZKD0-k"
-      var mjun;
       result = $.get("https://www.googleapis.com/youtube/v3/search", 
                       { key: api_key,
                         part: "snippet",
                         q: search_query
                       },
                       function(data) {
-                        searchResult = data.items
+                        searchResults = data.items
                       }
                     ); 
 
