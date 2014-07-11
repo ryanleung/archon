@@ -19,8 +19,21 @@
           <div id="left-bar" class="col-xs-12 col-md-4">
             {{partial "sidebar"}}
           </div>
-          {{outlet}}
+          <div id="playlist" class="col-xs-12 col-md-6">
+            {{outlet}}
+          </div>
+          <div id="searchbar" class="col-xs-12 col-md-2">
+            {{partial "searchbar"}}
+          </div>
         </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="_searchbar">
+      Search: {{input type="text" value=query}}
+      <button {{action "youtubeSearch" query}}>Add more videos!</button>
+      <div id="myResults">
+
       </div>
     </script>
 
@@ -61,11 +74,6 @@
             </li>
           {{/each}}
         </ul>
-        Search: {{input type="text" value=query}}
-        <button {{action "youtubeSearch" query}}>Add more videos!</button>
-        <div id="myResults">
-
-        </div>
       </div>
     </script>
 

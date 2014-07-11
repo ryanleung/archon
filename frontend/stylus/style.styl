@@ -12,7 +12,7 @@ $brand-danger = #d9534f
 
 $header-height = 50px
 
-html, body, #big-container, #left-bar
+html, body, #big-container, #left-bar, #searchbar
   height 100%
 
 // Hack to get full height with magic ember things
@@ -32,6 +32,12 @@ body > .ember-view
   padding-right 0
   background-color $gray-dark
   overflow-y scroll
+
+#searchbar
+  background-color $gray-dark
+  overflow-y scroll
+  color $gray-light
+
 
 #playlist-list
   color $gray-lighter

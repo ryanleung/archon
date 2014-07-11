@@ -73,7 +73,7 @@ App.Video.FIXTURES = [
   {
     id: 1,
     title: "nightblue3 game",
-    url: "//www.youtube.com/embed/rqtr_RvR3sY"
+    url: "//www.youtube.com/embed/3-hz4HRcbzM"
   },
   {
     id: 2,
