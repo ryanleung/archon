@@ -30,10 +30,12 @@
     </script>
 
     <script type="text/x-handlebars" id="_searchbar">
-      Search: {{input type="text" value=query}}
+      Search: {{input type="text" value=query action="youtubeSearch"}}
       <button {{action "youtubeSearch" query}}>Add more videos!</button>
       <div id="myResults">
-
+        {{#each model.videos}}
+          {{title}}
+        {{/each}}
       </div>
     </script>
 
