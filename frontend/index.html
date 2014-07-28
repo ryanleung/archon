@@ -29,14 +29,19 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" id="_searchbar">
+    <script type="text/x-handlebars" data-template-name="_searchbar">
       Search: {{input type="text" value=query action="youtubeSearch"}}
       <button {{action "youtubeSearch" query}}>Add more videos!</button>
+      {{view App.SearchView}}
       <div id="myResults">
         {{#each model.videos}}
           {{title}}
         {{/each}}
       </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="search">
+      <b>Posts:</b> {{view.name}}
     </script>
 
     <script type="text/x-handlebars" id="_sidebar">

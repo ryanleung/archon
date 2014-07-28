@@ -25,18 +25,7 @@ App.ApplicationRoute = Ember.Route.extend({
     },
     addVideo: function() {
       alert("hi")
-    }
-  }
-});
-
-App.SearchRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('video');
-  }
-});
-
-App.SearchController = Ember.ArrayController.extend({
-  actions: {
+    },
     youtubeSearch: function(search_query) {
       searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
                        {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
@@ -114,3 +103,9 @@ App.Video.FIXTURES = [
     url: "//www.youtube.com/embed/rqtr_RvR3sY"
   }
 ];
+
+App.SearchView = Ember.View.extend({
+  templateName: 'search',
+  name: "Bob"
+});
+
