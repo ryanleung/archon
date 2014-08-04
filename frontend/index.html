@@ -45,12 +45,12 @@
       <div id="searchbar" class="col-xs-12 col-md-2">
         Search: {{input type="text" value=query action="youtubeSearch"}}
         <button {{action "youtubeSearch" query}}>Add more videos!</button>
-        {{view App.SearchView}}
+        {{view App.SearchResultsView}}
       </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="search">
-      <b>Posts:</b> {{view.name}}
+    <script type="text/x-handlebars" data-template-name="search_results">
+       
     </script>
 
     <script type="text/x-handlebars" id="_sidebar">

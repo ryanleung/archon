@@ -54,8 +54,6 @@ App.PostsRoute = Ember.Route.extend({
 });
 **/
 
-var id_count = 3; // hacky way to keep track of the number of playlists for now
-
 App.ApplicationRoute = Ember.Route.extend({ // This route gets called every time the app loads
   model: function() {
     return this.store.find('playlist');
@@ -98,8 +96,7 @@ App.SongController = Ember.ObjectController.extend({
 App.ApplicationController = Ember.ArrayController.extend({
   actions: {
     addPlaylist: function(playlist_name) {
-      this.get('store').push('playlist', {id: id_count, title: playlist_name});
-      id_count += 1;
+      this.store.createRecord('playlist', {title: playlist_name});
     }
   }
 });
@@ -110,11 +107,6 @@ App.IndexController = Ember.ObjectController.extend({
 
 App.PlaylistController = Ember.ObjectController.extend({
   actions: {
-    videoSearch: function(search_query) {
-      searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
-                       {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
-
-    },
     youtubeSearch: function(search_query) {
       searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
                        {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
@@ -187,8 +179,8 @@ var view = Ember.View.create({
 });
 **/
 
-App.SearchView = Ember.View.create({
-  templateName: 'search',
+App.SearchResultsView = Ember.View.create({
+  templateName: 'search_results',
   name: "test1"
 });
 
