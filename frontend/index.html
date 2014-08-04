@@ -20,11 +20,9 @@
             {{partial "sidebar"}}
           </div>
           <div id="theatre" class="col-xs-12 col-md-6">
-            {{outlet}}
+            {{outlet "theatre"}}
           </div>
-          <div id="searchbar" class="col-xs-12 col-md-2">
-            {{partial "searchbar"}}
-          </div>
+          {{outlet "search_bar"}}
         </div>
       </div>
     </script>
@@ -43,10 +41,12 @@
       </div>
     </script>  
 
-    <script type="text/x-handlebars" data-template-name="_searchbar">
-      Search: {{input type="text" value=query action="youtubeSearch"}}
-      <button {{action "youtubeSearch" query}}>Add more videos!</button>
-      {{view App.SearchView}}
+    <script type="text/x-handlebars" data-template-name="search_bar">
+      <div id="searchbar" class="col-xs-12 col-md-2">
+        Search: {{input type="text" value=query action="youtubeSearch"}}
+        <button {{action "youtubeSearch" query}}>Add more videos!</button>
+        {{view App.SearchView}}
+      </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="search">
