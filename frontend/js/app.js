@@ -106,16 +106,18 @@ App.IndexController = Ember.ObjectController.extend({
 });
 
 App.PlaylistController = Ember.ObjectController.extend({
+  currentSearchResults: [],
   actions: {
     youtubeSearch: function(search_query) {
-      searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
+      newSearchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
                        {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
+      this.set('currentSearchResults', newSearchResults);
       //$('#myResults').append("<ul>")
-      for (i = 0; i < searchResults.length; i++) {
+      // for (i = 0; i < searchResults.length; i++) {
         //$('#myResults').append("<li>");
-        title = searchResults[i].title;
-        image = searchResults[i].url;
-        this.get('store').createRecord('video', {title: title})
+        // title = searchResults[i].title;
+        // image = searchResults[i].url;
+        // this.get('store').createRecord('video', {title: title})
         //$('#myResults').append("<img src=" + image + ">" + title);
         //$('#myResults').append('<button {{action "addVideo"}}>+</button>')
         //$('#myResults').append("</li>");
@@ -133,7 +135,7 @@ App.PlaylistController = Ember.ObjectController.extend({
     //                     }
     //                   }
     //                 ); 
-      }
+      // }
     }
   }
 });
@@ -179,9 +181,12 @@ var view = Ember.View.create({
 });
 **/
 
-App.SearchResultsView = Ember.View.create({
+App.SearchResultsView = Ember.View.extend({
   templateName: 'search_results',
-  name: "test1"
+  name: "Search Results",
+  searchResults: function() {
+    return this.get('controller.currentSearchResults');
+  }.property('controller.currentSearchResults')
 });
 
 /**

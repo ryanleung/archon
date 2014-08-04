@@ -50,7 +50,9 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="search_results">
-       
+      {{#each result in view.searchResults}}
+        {{result.title}}
+      {{/each}}
     </script>
 
     <script type="text/x-handlebars" id="_sidebar">
