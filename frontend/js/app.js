@@ -23,11 +23,11 @@ for linking the current url to its respective controller.
 (ex. www.app.com/playlist => PlaylistRoute => PlaylistController)
 **/
 App.Router.map(function() {
-  this.route('about');
-  this.route('home');
-  this.resource('playlists', { path: 'playlists/:playlist_id'},
+  this.resource('about');
+  this.resource('home');
+  this.resource('playlist', {path: 'playlist/:playlist_id'},
     function() {
-      this.resource('videos', {path: 'videos/:video_id'})
+      this.resource('video', {path: 'video/:video_id'})
     }
   );
 });
@@ -54,20 +54,28 @@ App.PostsRoute = Ember.Route.extend({
 });
 **/
 
+var id_count = 3; // hacky way to keep track of the number of playlists for now
+
 App.ApplicationRoute = Ember.Route.extend({ // This route gets called every time the app loads
-  
+  model: function() {
+    return this.store.find('playlist');
+  }
 });
 
 App.IndexRoute = Ember.Route.extend({ // This route gets called when '/' path is loaded
 
 });
 
-App.PlaylistsRoute = Ember.Route.extend({ // This route gets called when '/playlists' path is loaded
-
+App.PlaylistRoute = Ember.Route.extend({ // This route gets called when '/playlist' path is loaded
+  model: function(params) {
+    return this.store.find('playlist', params.playlist_id);
+  } 
 });
 
-App.VideosRoute = Ember.Route.extend({ // This route gets called when '/playlists/:playlist_id/videos' path is loaded
-
+App.VideoRoute = Ember.Route.extend({ // This route gets called when '/playlist/:playlist_id/video' path is loaded
+  model: function() {
+    return this.store.find('video');
+  }
 });
 
 /**
@@ -84,18 +92,52 @@ App.SongController = Ember.ObjectController.extend({
 **/
 
 App.ApplicationController = Ember.ArrayController.extend({
-
+  actions: {
+    addPlaylist: function(playlist_name) {
+      this.get('store').push('playlist', {id: id_count, title: playlist_name});
+      id_count += 1;
+    }
+  }
 });
 
 App.IndexController = Ember.ObjectController.extend({
 
 });
 
-App.PlaylistsController = Ember.ArrayController.extend({
-
+App.PlaylistController = Ember.ObjectController.extend({
+  actions: {
+    youtubeSearch: function(search_query) {
+      searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
+                       {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
+      //$('#myResults').append("<ul>")
+      for (i = 0; i < searchResults.length; i++) {
+        //$('#myResults').append("<li>");
+        title = searchResults[i].title;
+        image = searchResults[i].url;
+        this.get('store').createRecord('video', {title: title})
+        //$('#myResults').append("<img src=" + image + ">" + title);
+        //$('#myResults').append('<button {{action "addVideo"}}>+</button>')
+        //$('#myResults').append("</li>");
+      //$('#myResults').append("</ul>");
+    //   api_key = "AIzaSyAhe1BqglbuLH3s2ZUBacjEoxTQ7ZKD0-k"
+    //   result = $.get("https://www.googleapis.com/youtube/v3/search", 
+    //                   { key: api_key,
+    //                     part: "snippet",
+    //                     q: search_query
+    //                   },
+    //                   function(data) {
+    //                     searchResults = data.items;
+    //                     for (i = 0; i < searchResults.length; i++) {
+    //                       $('#myResults').append(searchResults[i].snippet.title);
+    //                     }
+    //                   }
+    //                 ); 
+      }
+    }
+  }
 });
 
-App.VideosController = Ember.ArrayController.extend({
+App.VideoController = Ember.ObjectController.extend({
 
 });
 
@@ -136,51 +178,9 @@ var view = Ember.View.create({
 });
 **/
 
-App.ApplicationRoute = Ember.Route.extend({
-  searchResults: [1,2,3],
-
-  model: function() {
-    return this.store.find('playlist');
-  },
-
-  actions: {
-    addPlaylist: function(playlist_name) {
-      this.get('store').push('playlist', {id: id_count, title: playlist_name})
-    },
-    addVideo: function() {
-      alert("hi")
-    },
-    youtubeSearch: function(search_query) {
-      searchResults = [{etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"},
-                       {etag: "FOuwADrXJjsTKgUIQJoQC6nKNFY/7BoRtJF13QuMNFxwC3Ec8xUPaCc", description: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V] #TAEYANG #RISE #EYESNOSELIPS * 눈, 코, 입(EYES, NOSE, LIPS) COVER PROJECT BY YOU Submission ...", url: "https://i.ytimg.com/vi/UwuAPyOImoI/default.jpg", title: "TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M/V", videoId: "UwuAPyOImoI"}];
-      //$('#myResults').append("<ul>")
-      for (i = 0; i < searchResults.length; i++) {
-        //$('#myResults').append("<li>");
-        title = searchResults[i].title;
-        image = searchResults[i].url;
-        this.get('store').createRecord('video', {title: title})
-        //$('#myResults').append("<img src=" + image + ">" + title);
-        //$('#myResults').append('<button {{action "addVideo"}}>+</button>')
-        //$('#myResults').append("</li>");
-      }
-      //$('#myResults').append("</ul>");
-    //   api_key = "AIzaSyAhe1BqglbuLH3s2ZUBacjEoxTQ7ZKD0-k"
-    //   result = $.get("https://www.googleapis.com/youtube/v3/search", 
-    //                   { key: api_key,
-    //                     part: "snippet",
-    //                     q: search_query
-    //                   },
-    //                   function(data) {
-    //                     searchResults = data.items;
-    //                     for (i = 0; i < searchResults.length; i++) {
-    //                       $('#myResults').append(searchResults[i].snippet.title);
-    //                     }
-    //                   }
-    //                 ); 
-
-    // }
-    }
-  }
+App.SearchView = Ember.View.create({
+  templateName: 'search',
+  name: "test1"
 });
 
 /**
@@ -220,9 +220,4 @@ App.Video.FIXTURES = [
     url: "//www.youtube.com/embed/rqtr_RvR3sY"
   }
 ];
-
-App.SearchView = Ember.View.extend({
-  templateName: 'search',
-  name: "Bob"
-});
 
