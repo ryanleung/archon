@@ -69,7 +69,10 @@ App.IndexRoute = Ember.Route.extend({ // This route gets called when '/' path is
 App.PlaylistRoute = Ember.Route.extend({ // This route gets called when '/playlist' path is loaded
   model: function(params) {
     return this.store.find('playlist', params.playlist_id);
-  } 
+  },
+  renderTemplate: function() {
+    this.render('theatre');
+  }
 });
 
 App.VideoRoute = Ember.Route.extend({ // This route gets called when '/playlist/:playlist_id/video' path is loaded
