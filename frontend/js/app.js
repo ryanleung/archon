@@ -136,6 +136,30 @@ App.PlaylistController = Ember.ObjectController.extend({
     //                   }
     //                 ); 
       // }
+    },
+    youtubeSearchV1: function(search_query) {
+      $.get('https://gdata.youtube.com/feeds/api/videos', {
+        q: search_query,
+        alt: 'json',
+        'start-index': 1,
+        'max-results': 20,
+        v: 2
+      }, function(data) {
+        var results = data.feed.entry || [];
+        var new_entries = [];
+        for (var i = 0; i < results.length; i++) {
+          var media_group = results[i]['media$group'];
+          new_entries.push(this.store.createRecord('video', {
+            url:        media_group['yt$videoid']['$t'],
+            title:      media_group['media$title']['$t'],
+            //uploader:   results[i].author.map(function(obj) { return obj.name['$t'] }).join(', '),
+            //artLink:    'http://i.ytimg.com/vi/' + media_group['yt$videoid']['$t'] + '/1.jpg',
+            //duration:   parseInt(media_group['yt$duration']['seconds']),
+            //trackType:  'yt'
+          }));
+        };
+        this.set('currentSearchResults', new_entries);
+      }.bind(this));
     }
   }
 });
