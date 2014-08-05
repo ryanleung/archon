@@ -43,7 +43,7 @@
 
     <script type="text/x-handlebars" data-template-name="search_bar">
       <div id="searchbar" class="col-xs-12 col-md-2">
-        Search: {{input type="text" value=query action="youtubeSearch"}}
+        Search: {{input type="text" value=query action="youtubeSearchV1"}}
         <button {{action "youtubeSearchV1" query}}>Add more videos!</button>
         {{view App.SearchResultsView}}
       </div>
@@ -51,7 +51,12 @@
 
     <script type="text/x-handlebars" data-template-name="search_results">
       {{#each result in view.searchResults}}
-        {{result.title}}
+        <div {{action "addVideo" result}} 
+          <div class="search-result">
+            <img {{bind-attr src=result.artUrl}} class="videoArt"></img>
+            {{result.title}}
+          </div>
+        </div>
       {{/each}}
     </script>
 

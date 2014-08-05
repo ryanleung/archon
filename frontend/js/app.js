@@ -153,13 +153,18 @@ App.PlaylistController = Ember.ObjectController.extend({
             url:        media_group['yt$videoid']['$t'],
             title:      media_group['media$title']['$t'],
             //uploader:   results[i].author.map(function(obj) { return obj.name['$t'] }).join(', '),
-            //artLink:    'http://i.ytimg.com/vi/' + media_group['yt$videoid']['$t'] + '/1.jpg',
+            artUrl:    'http://i.ytimg.com/vi/' + media_group['yt$videoid']['$t'] + '/1.jpg',
             //duration:   parseInt(media_group['yt$duration']['seconds']),
             //trackType:  'yt'
           }));
         };
         this.set('currentSearchResults', new_entries);
       }.bind(this));
+    },
+    addVideo: function(video) {
+      var playlist = this.store.getById('playlist', this.get('id'));
+      var video = this.store.createRecord('video', video.toJSON());
+      playlist.get('videos').pushObject(video);
     }
   }
 });
@@ -191,7 +196,8 @@ App.Playlist = DS.Model.extend({
 App.Video = DS.Model.extend({
   title: DS.attr('string'),
   playlist: DS.belongsTo('playlist'),
-  url: DS.attr('string')
+  url: DS.attr('string'),
+  artUrl: DS.attr('string')
 });
 
 /**
