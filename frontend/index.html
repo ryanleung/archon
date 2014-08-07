@@ -30,13 +30,15 @@
     <script type="text/x-handlebars" data-template-name="theatre">
       <div class="container-fluid">
         <div class="row-fluid">
-          <ul>
+          <div id="youtube-player">
+          </div>
+          <div id="video-list">
             {{#each model.videos}}
-            <li>
-              {{title}}
-            </li>
+              <div class="video-item">
+                {{title}}
+              </div>
             {{/each}}
-          </ul>
+          </div>
         </div>
       </div>
     </script>  
@@ -86,10 +88,12 @@
     <iframe width="420" height="315" {{bind-attr src=url}} frameborder="0" allowfullscreen></iframe>
     </script>
 
+    <script src="js/libs/swfobject.js"></script>
     <script src="js/libs/jquery-1.10.2.min.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>
     <script src="js/libs/ember.js"></script>
     <script src="js/libs/ember-data.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/yt_player.js"></script>
   </body>
 </html>
