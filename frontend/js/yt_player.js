@@ -9,8 +9,8 @@ YoutubePlayer.prototype.init = function() {
 
 /* Youtube Player Callbacks */
 function onYouTubePlayerReady(playerId) {
-    // alert('hi');
-    // debugger;
+    alert('hi');
+    debugger;
     player.youtube_player = $('#youtube-player').get(0);
     player.youtube_player.addEventListener('onStateChange', 'onYouTubeStateChange');
 }
