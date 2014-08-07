@@ -1,21 +1,18 @@
-var YoutubePlayer = function() {};
+var youtubePlayer;
 
-YoutubePlayer.prototype.init = function() {
-    var youtube_params = { allowScriptAccess: "always" };
-    var youtube_atts = { id: "youtube-player" };
-    swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
-      "youtube-player", "854", "480", "8", null, null, youtube_params, youtube_atts);
+// this isn't put under the usual scripts in index.html because it has to be
+// loaded asynchronously. We could have also done <script async src='https//www.youtube...'
+var tag = $('<script></script>').attr('src', 'https://www.youtube.com/iframe_api');
+$('body').append(tag);
+
+function onYouTubeIframeAPIReady() {
+    youtubePlayer = new YT.Player('youtube-player', {
+        height: '390',
+        width: '640',
+        videoId: 'M7lc1UVf-VE',
+        events: {
+            'onReady' : function() {},
+            'onStateChange' : function() {}
+        }
+    });
 }
-
-/* Youtube Player Callbacks */
-function onYouTubePlayerReady(playerId) {
-    alert('hi');
-    debugger;
-    player.youtube_player = $('#youtube-player').get(0);
-    player.youtube_player.addEventListener('onStateChange', 'onYouTubeStateChange');
-}
-
-$(function() {
-    yt_player = new YoutubePlayer();
-    yt_player.init();
-});
