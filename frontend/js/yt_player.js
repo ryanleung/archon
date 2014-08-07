@@ -1,3 +1,9 @@
+/**
+yt_player.js
+Youtube Player
+https://developers.google.com/youtube/iframe_api_reference
+**/
+
 var youtubePlayer;
 
 // this isn't put under the usual scripts in index.html because it has to be
