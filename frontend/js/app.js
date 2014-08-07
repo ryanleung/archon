@@ -211,6 +211,12 @@ var view = Ember.View.create({
 });
 **/
 
+App.ApplicationView = Ember.View.extend({
+  didInsertElement: function() {
+    App.set('youtubePlayer', new YoutubePlayer());
+  }
+});
+
 App.SearchResultsView = Ember.View.extend({
   templateName: 'search_results',
   name: "Search Results",

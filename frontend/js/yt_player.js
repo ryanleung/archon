@@ -4,21 +4,28 @@ Youtube Player
 https://developers.google.com/youtube/iframe_api_reference
 **/
 
-var youtubePlayer;
+var onYouTubeIframeAPIReady;
 
-// this isn't put under the usual scripts in index.html because it has to be
-// loaded asynchronously. We could have also done <script async src='https//www.youtube...'
-var tag = $('<script></script>').attr('src', 'https://www.youtube.com/iframe_api');
-$('body').append(tag);
+var YoutubePlayer = function() {
+    // this isn't put under the usual scripts in index.html because it has to be
+    // loaded asynchronously. We could have also done <script async src='https//www.youtube...'
+    var tag = $('<script></script>').attr('src', 'https://www.youtube.com/iframe_api');
+    $('body').append(tag);
+    
+    onYouTubeIframeAPIReady = function() {
+        this.player = new YT.Player('youtube-player', {
+            height: '390',
+            width: '640',
+            videoId: 'M7lc1UVf-VE',
+            events: {
+                'onReady' : function() {}, // this should set some sort of bool indicating that the player is ready.
+                                           // If it isn't ready we can't play anything yet. 
+                'onStateChange' : function() {}
+            }
+        });
+    }.bind(this);
+};
 
-function onYouTubeIframeAPIReady() {
-    youtubePlayer = new YT.Player('youtube-player', {
-        height: '390',
-        width: '640',
-        videoId: 'M7lc1UVf-VE',
-        events: {
-            'onReady' : function() {},
-            'onStateChange' : function() {}
-        }
-    });
+YoutubePlayer.prototype.play = function() {
+    this.player.playVideo();
 }
