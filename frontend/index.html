@@ -34,7 +34,7 @@
           <div id="video-list">
             {{#each model.videos}}
               <div class="video-item">
-                {{title}}
+                <button {{action "playVideo" youtubeId}}>{{title}}</button>
               </div>
             {{/each}}
           </div>

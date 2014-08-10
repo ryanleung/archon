@@ -71,6 +71,13 @@ App.PlaylistRoute = Ember.Route.extend({ // This route gets called when '/playli
   renderTemplate: function() {
     this.render('theatre', {outlet: 'theatre'});
     this.render('search_bar', {outlet: 'search_bar'});
+  },
+  deactivate: function() {
+    $('#youtube-player').hide();
+    App.get('youtubePlayer').stop();
+  },
+  activate: function() {
+    $('#youtube-player').show();
   }
 });
 
@@ -150,7 +157,7 @@ App.PlaylistController = Ember.ObjectController.extend({
         for (var i = 0; i < results.length; i++) {
           var media_group = results[i]['media$group'];
           new_entries.push(this.store.createRecord('video', {
-            url:        media_group['yt$videoid']['$t'],
+            youtubeId:        media_group['yt$videoid']['$t'],
             title:      media_group['media$title']['$t'],
             //uploader:   results[i].author.map(function(obj) { return obj.name['$t'] }).join(', '),
             artUrl:    'http://i.ytimg.com/vi/' + media_group['yt$videoid']['$t'] + '/1.jpg',
@@ -165,6 +172,11 @@ App.PlaylistController = Ember.ObjectController.extend({
       var playlist = this.store.getById('playlist', this.get('id'));
       var video = this.store.createRecord('video', video.toJSON());
       playlist.get('videos').pushObject(video);
+    },
+    playVideo: function(youtubeId) {
+      youtubePlayer = App.get('youtubePlayer');
+      youtubePlayer.cueVideo(youtubeId);
+      youtubePlayer.play();
     }
   }
 });
@@ -189,14 +201,14 @@ App.Person = DS.Model.extend({
 
 App.Playlist = DS.Model.extend({
   title: DS.attr('string'),
-  watcher_count: DS.attr('number'),
+  watcherCount: DS.attr('number'),
   videos: DS.hasMany('video', {async: true}),
 });
 
 App.Video = DS.Model.extend({
   title: DS.attr('string'),
   playlist: DS.belongsTo('playlist'),
-  url: DS.attr('string'),
+  youtubeId: DS.attr('string'),
   artUrl: DS.attr('string')
 });
 
@@ -234,13 +246,13 @@ App.Playlist.FIXTURES = [
   {
     id: 1,
     title: "kpop",
-    watcher_count: 18,
+    watcherCount: 18,
     videos: [1, 2]
   },
   {
     id: 2,
     title: "The Parley Letter",
-    watcher_count: 20,
+    watcherCount: 20,
     videos: [3]
   }
 ];
@@ -249,17 +261,17 @@ App.Video.FIXTURES = [
   {
     id: 1,
     title: "nightblue3 game",
-    url: "//www.youtube.com/embed/3-hz4HRcbzM"
+    youtubeId: "3-hz4HRcbzM"
   },
   {
     id: 2,
     title: "poker phil helmuth",
-    url: "//www.youtube.com/embed/TJvtPnKLQ34"
+    youtubeId: "TJvtPnKLQ34"
   },
   {
     id: 3,
     title: "gangnam style",
-    url: "//www.youtube.com/embed/rqtr_RvR3sY"
+    youtubeId: "rqtr_RvR3sY"
   }
 ];
 

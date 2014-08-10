@@ -16,7 +16,7 @@ var YoutubePlayer = function() {
         this.player = new YT.Player('youtube-player', {
             height: '390',
             width: '640',
-            videoId: 'M7lc1UVf-VE',
+            playerVars: {'controls': 0},
             events: {
                 'onReady' : function() {}, // this should set some sort of bool indicating that the player is ready.
                                            // If it isn't ready we can't play anything yet. 
@@ -28,4 +28,12 @@ var YoutubePlayer = function() {
 
 YoutubePlayer.prototype.play = function() {
     this.player.playVideo();
+}
+
+YoutubePlayer.prototype.cueVideo = function(video_id) {
+    this.player.cueVideoById(video_id);
+}
+
+YoutubePlayer.prototype.stop = function() {
+    this.player.stopVideo();
 }
