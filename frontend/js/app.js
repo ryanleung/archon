@@ -61,7 +61,6 @@ App.ApplicationRoute = Ember.Route.extend({ // This route gets called every time
 });
 
 App.IndexRoute = Ember.Route.extend({ // This route gets called when '/' path is loaded
-
 });
 
 App.PlaylistRoute = Ember.Route.extend({ // This route gets called when '/playlist' path is loaded
@@ -226,6 +225,7 @@ var view = Ember.View.create({
 App.ApplicationView = Ember.View.extend({
   didInsertElement: function() {
     App.set('youtubePlayer', new YoutubePlayer());
+    $('#youtube-player').hide();
   }
 });
 
