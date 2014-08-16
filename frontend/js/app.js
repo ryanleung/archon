@@ -12,7 +12,10 @@ This section deals with instantiating the Ember application and
 sets up custom options, like whether or not to use a fixture
 for the DB.
 **/
-App = Ember.Application.create();
+App = Ember.Application.create({
+  currentPath: '' 
+});
+
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 /**
@@ -77,6 +80,14 @@ App.PlaylistRoute = Ember.Route.extend({ // This route gets called when '/playli
   },
   activate: function() {
     $('#youtube-player').show();
+  },
+  actions: {
+    didTransition: function() {
+      if (App.get('youtubePlayer')) {
+        App.get('youtubePlayer').stop();
+      }
+      return true;
+    }
   }
 });
 
@@ -100,6 +111,9 @@ App.SongController = Ember.ObjectController.extend({
 **/
 
 App.ApplicationController = Ember.ArrayController.extend({
+  currentPathDidChange: function() {
+      App.set('currentPath', this.get('currentPath'));
+    }.observes('currentPath'),
   actions: {
     addPlaylist: function(playlist_name) {
       this.store.createRecord('playlist', {title: playlist_name});
@@ -225,7 +239,9 @@ var view = Ember.View.create({
 App.ApplicationView = Ember.View.extend({
   didInsertElement: function() {
     App.set('youtubePlayer', new YoutubePlayer());
-    $('#youtube-player').hide();
+    if (App.get('currentPath') != "playlist.index") {
+      $('#youtube-player').hide();
+    }
   }
 });
 
