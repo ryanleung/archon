@@ -32,11 +32,14 @@
       <div class="container-fluid">
         <div class="row-fluid">
           <div id="video-list">
-            {{#each model.videos}}
+            {{#eachIndexed model.videos}}
               <div class="video-item">
-                <button {{action "playVideo" youtubeId}}>{{title}}</button>
+                <div {{action "playVideo" youtubeId}}>
+                  {{index_1}}
+                  {{title}}
+                </div>
               </div>
-            {{/each}}
+            {{/eachIndexed}}
           </div>
         </div>
       </div>
