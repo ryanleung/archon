@@ -9,16 +9,18 @@
   </head>
   <body>
     <script type="text/x-handlebars">
-      <div id="big-container" class="container-fluid">
-        <div id="header" class="row-fluid">
-          {{#link-to 'home' classNames="big-title"}}Archon{{/link-to}}
+      <div id="big-container">
+        <div id="header">
+          {{#link-to 'home' classNames="big-title"}}
+            Archon
+          {{/link-to}}
         </div>
 
-        <div id="main-parent" class="row-fluid">
-          <div id="left-bar" class="col-xs-12 col-md-2">
+        <div id="main-parent">
+          <div id="left-bar" class="col-md-2">
             {{partial "sidebar"}}
           </div>
-          <div id="theatre" class="col-xs-12 col-md-8">
+          <div id="theatre" class="col-md-8">
             <div id="youtube-player"></div>
             {{outlet "theatre"}}
           </div>
@@ -28,26 +30,22 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="theatre">
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <div id="video-list">
-            {{#eachIndexed model.videos}}
-              <div class="video-item">
-                <div {{action "playVideo" youtubeId}}>
-                  {{index_1}}
-                  {{title}}
-                  {{duration}}
-                  {{uploader}}
-                </div>
-              </div>
-            {{/eachIndexed}}
+      <div id="video-list">
+        {{#eachIndexed model.videos}}
+          <div class="video-item">
+            <div {{action "playVideo" youtubeId}}>
+              {{index_1}}
+              {{title}}
+              {{duration}}
+              {{uploader}}
+            </div>
           </div>
-        </div>
+        {{/eachIndexed}}
       </div>
     </script>  
 
     <script type="text/x-handlebars" data-template-name="search_bar">
-      <div id="searchbar" class="col-xs-12 col-md-2">
+      <div id="searchbar" class="col-md-2">
         Search: {{input type="text" value=query action="youtubeSearchV1"}}
         <button {{action "youtubeSearchV1" query}}>Add more videos!</button>
         {{view App.SearchResultsView}}
@@ -66,24 +64,17 @@
     </script>
 
     <script type="text/x-handlebars" id="_sidebar">
-      <div id="playlists-list">
-        <div class="container-fluid">
-          <div class="row-fluid">
-            <ul>
-              {{#each model}}
-                <li>
-                  {{#link-to 'playlist' this}}
-                    {{title}}
-                  {{/link-to}}
-                </li>
-              {{/each}}
-            </ul>
-          </div>
-          <form>
-          Playlist: {{input type="text" value=title}}
-          <button {{action "addPlaylist" title}}>Add Playlist!</button>
-          </form>
-        </div>
+    <div id="playlists-list">
+        {{#eachIndexed model}}
+          {{#link-to 'playlist' this classNames="playlist-item"}}
+            {{index_1}}.&nbsp;
+            {{title}}
+          {{/link-to}}
+        {{/eachIndexed}}
+        <form>
+        {{input type="text" value=title}}
+        <button {{action "addPlaylist" title}}>Add Playlist!</button>
+        </form>
       </div>
     </script>
 
