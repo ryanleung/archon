@@ -3,6 +3,7 @@ $gray-dark    = lighten(#000, 20%)
 $gray         = lighten(#000, 33.5%)
 $gray-light   = lighten(#000, 60%)
 $gray-lighter = lighten(#000, 93.5%)
+$black = #000
 
 $brand-primary = #428bca
 $brand-success = #5cb85c
@@ -10,9 +11,19 @@ $brand-info = #5bc0de
 $brand-warning = #f0ad4e
 $brand-danger = #d9534f
 
+$ar-black           = #393939
+$ar-strongOrange    = #FF5A09
+$ar-orange          = #F3843E
+$ar-lightOrange     = #FF9900
+$ar-gray            = #6E6E6E
+
+$font-family-helvetica = "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+$font-family-weight = 300
+
 $header-height = 50px
 
 html, body, #big-container, #left-bar, #searchbar
+  background-color $ar-gray
   height 100%
 
 // Hack to get full height with magic ember things
@@ -20,8 +31,11 @@ body > .ember-view
   height 100%
 
 #header
-  height 50px
+  height $header-height 
   background-color $gray-darker
+  box-shadow 0px 2px 5px 0px $black
+  z-index 1
+  position relative
 
 #main-parent
   height unquote("calc(100% - " + $header-height + ")")
@@ -30,13 +44,29 @@ body > .ember-view
 #left-bar
   padding-left 0
   padding-right 0
-  background-color $gray-dark
+  background-color $ar-black
   overflow-y scroll
 
 #searchbar
   background-color $gray-dark
   overflow-y scroll
   color $gray-light
+
+.container-fluid
+  margin 0
+  padding 0
+
+.big-title
+  color $ar-strongOrange
+  text-decoration none
+  display inline-block
+  font-size 30px
+  padding 15px 0px 0px 20px
+  font-family: $font-family-helvetica 
+
+.big-title:hover
+  color $ar-strongOrange
+  text-decoration none
 
 .search-result
   position relative
@@ -62,27 +92,12 @@ body > .ember-view
   border-top 1px solid transparent
   border-bottom 1px solid transparent
   outline 0
-  .playlist-name
-    color lighten($gray-light, 50%)
-  .song-count
-    font-size 11px
-    font-weight 300
-    color $gray-light
-    padding-left 3px
-  .listener-count
-    .glyphicon
-      color $gray-lighter
-      font-size 11px
-    color $gray-light
-  .listener-count.empty
-    .glyphicon
-      color $gray
-    color transparent
+  color white
+  font-family $font-family-helvetica
 
 .playlist-item:hover
   text-decoration none
-  .playlist-name
-    color $gray-lighter
+  color $gray-lighter
 
 .playlist-item.active
   border-top 1px solid darken($gray-darker, 20%)

@@ -172,10 +172,9 @@ App.PlaylistController = Ember.ObjectController.extend({
           new_entries.push(this.store.createRecord('video', {
             youtubeId:        media_group['yt$videoid']['$t'],
             title:      media_group['media$title']['$t'],
-            //uploader:   results[i].author.map(function(obj) { return obj.name['$t'] }).join(', '),
+            uploader:   results[i].author.map(function(obj) { return obj.name['$t'] }).join(', '),
             artUrl:    'http://i.ytimg.com/vi/' + media_group['yt$videoid']['$t'] + '/1.jpg',
-            //duration:   parseInt(media_group['yt$duration']['seconds']),
-            //trackType:  'yt'
+            duration:   parseInt(media_group['yt$duration']['seconds']),
           }));
         };
         this.set('currentSearchResults', new_entries);
@@ -222,7 +221,9 @@ App.Video = DS.Model.extend({
   title: DS.attr('string'),
   playlist: DS.belongsTo('playlist'),
   youtubeId: DS.attr('string'),
-  artUrl: DS.attr('string')
+  artUrl: DS.attr('string'),
+  duration: DS.attr('number'),
+  uploader: DS.attr('string')
 });
 
 /**
