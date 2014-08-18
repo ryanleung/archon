@@ -11,15 +11,14 @@
     <script type="text/x-handlebars">
       <div id="big-container" class="container-fluid">
         <div id="header" class="row-fluid">
-          <li>{{#link-to 'home'}}Archon{{/link-to}}</li>
-          <li>{{#link-to 'about'}}About{{/link-to}}</li>
+          {{#link-to 'home' classNames="big-title"}}Archon{{/link-to}}
         </div>
 
         <div id="main-parent" class="row-fluid">
-          <div id="left-bar" class="col-xs-12 col-md-4">
+          <div id="left-bar" class="col-xs-12 col-md-2">
             {{partial "sidebar"}}
           </div>
-          <div id="theatre" class="col-xs-12 col-md-6">
+          <div id="theatre" class="col-xs-12 col-md-8">
             <div id="youtube-player"></div>
             {{outlet "theatre"}}
           </div>
@@ -37,6 +36,8 @@
                 <div {{action "playVideo" youtubeId}}>
                   {{index_1}}
                   {{title}}
+                  {{duration}}
+                  {{uploader}}
                 </div>
               </div>
             {{/eachIndexed}}
