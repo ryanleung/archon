@@ -26,18 +26,39 @@
           </div>
           {{outlet "search_bar"}}
         </div>
+        <div id="footer">
+        </div>
       </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="theatre">
+      <div class="row">
+        <div class="col-md-6">
+          &nbsp;
+          Title
+        </div>
+        <div class="col-md-4">
+          Duration
+        </div>
+        <div class="col-md-2">
+          Uploader
+        </div>
+      </div>
       <div id="video-list">
         {{#eachIndexed model.videos}}
-          <div class="video-item">
+          <div class="video-item row">
             <div {{action "playVideo" youtubeId}}>
-              {{index_1}}
-              {{title}}
-              {{duration}}
-              {{uploader}}
+              <div class="col-md-6">
+                &nbsp;
+                {{index_1}}.&nbsp;
+                {{title}}
+              </div>
+              <div class="col-md-4">
+                {{duration}}
+              </div>
+              <div class="col-md-2">
+                {{uploader}}
+              </div>
             </div>
           </div>
         {{/eachIndexed}}
